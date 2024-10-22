@@ -1,0 +1,11 @@
+AMPasswordGenerator_gtk
+AMPasswordGenerator_qt
+AMPasswordGenerator.exe
+
+backup/
+lib/
+
+*.lps
+*.res
+*.ini
+
