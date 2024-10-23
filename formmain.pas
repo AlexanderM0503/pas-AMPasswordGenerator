@@ -32,6 +32,10 @@ type
     GroupPassword: TGroupBox;
     PasswordString: TEdit;
     BtnGenPassword: TButton;
+    procedure MainFormMenuExitClick(Sender: TObject);
+    procedure BtnSetNum4Click(Sender: TObject);
+    procedure BtnSetNum8Click(Sender: TObject);
+    procedure BtnSetNum12Click(Sender: TObject);
   private
 
   public
@@ -47,6 +51,26 @@ implementation
 
 { TMainForm }
 
+
+procedure TMainForm.MainFormMenuExitClick(Sender: TObject);
+begin
+  MainForm.Close;
+end;
+
+procedure TMainForm.BtnSetNum4Click(Sender: TObject);
+begin
+  NumChars.Value:= 4;
+end;
+
+procedure TMainForm.BtnSetNum8Click(Sender: TObject);
+begin
+  NumChars.Value:= 8;
+end;
+
+procedure TMainForm.BtnSetNum12Click(Sender: TObject);
+begin
+  NumChars.Value:= 12;
+end;
 
 end.
 

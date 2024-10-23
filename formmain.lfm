@@ -35,6 +35,7 @@ object MainForm: TMainForm
       Top = 64
       Width = 75
       Caption = '4'
+      OnClick = BtnSetNum4Click
       TabOrder = 1
     end
     object BtnSetNum8: TButton
@@ -43,6 +44,7 @@ object MainForm: TMainForm
       Top = 64
       Width = 75
       Caption = '8'
+      OnClick = BtnSetNum8Click
       TabOrder = 2
     end
     object BtnSetNum12: TButton
@@ -51,6 +53,7 @@ object MainForm: TMainForm
       Top = 64
       Width = 75
       Caption = '12'
+      OnClick = BtnSetNum12Click
       TabOrder = 3
     end
   end
@@ -148,6 +151,7 @@ object MainForm: TMainForm
       end
       object MainFormMenuExit: TMenuItem
         Caption = 'Выход'
+        OnClick = MainFormMenuExitClick
       end
     end
     object MainFormMenuHelp: TMenuItem
