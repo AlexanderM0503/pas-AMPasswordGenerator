@@ -5,7 +5,8 @@ unit FormMain;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, StdCtrls, Spin;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, StdCtrls, Spin,
+  PasswordGenerator;
 
 type
 
@@ -36,6 +37,7 @@ type
     procedure BtnSetNum4Click(Sender: TObject);
     procedure BtnSetNum8Click(Sender: TObject);
     procedure BtnSetNum12Click(Sender: TObject);
+    procedure BtnGenPasswordClick(Sender: TObject);
   private
 
   public
@@ -70,6 +72,14 @@ end;
 procedure TMainForm.BtnSetNum12Click(Sender: TObject);
 begin
   NumChars.Value:= 12;
+end;
+
+procedure TMainForm.BtnGenPasswordClick(Sender: TObject);
+begin
+  if CharUp.Checked or CharLow.Checked or Digit.Checked or SpChar.Checked then
+    PasswordString.Text:= GetPasswordString(CharUp.Checked, CharLow.Checked, Digit.Checked, SpChar.Checked, NumChars.Value)
+  else
+    PasswordString.Text:= 'Не выбраны типы символов';
 end;
 
 end.
