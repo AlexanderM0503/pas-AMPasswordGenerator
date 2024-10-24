@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, StdCtrls, Spin,
-  PasswordGenerator, FormAbout;
+  IniFiles ,PasswordGenerator, FormAbout;
 
 type
 
@@ -33,6 +33,8 @@ type
     GroupPassword: TGroupBox;
     PasswordString: TEdit;
     BtnGenPassword: TButton;
+    procedure FormCreate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure MainFormMenuDefaultSettingsClick(Sender: TObject);
     procedure MainFormMenuExitClick(Sender: TObject);
     procedure MainFormMenuAboutClick(Sender: TObject);
@@ -48,6 +50,7 @@ type
 
 var
   MainForm: TMainForm;
+  IniFile: TIniFile;
 
 implementation
 
@@ -56,9 +59,33 @@ implementation
 { TMainForm }
 
 
+procedure TMainForm.FormCreate(Sender: TObject);
+begin
+  MainForm.Left:= IniFile.ReadInteger('Position', 'X', 25);
+  MainForm.Top:= IniFile.ReadInteger('Position', 'Y', 25);
+  MainForm.Width:= IniFile.ReadInteger('Size', 'Width', 350);
+  MainForm.Height:= IniFile.ReadInteger('Size', 'Height', 570);
+end;
+
+procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+begin
+  IniFile.WriteInteger('Position', 'X', MainForm.Left);
+  IniFile.WriteInteger('Position', 'Y', MainForm.Top);
+  IniFile.WriteInteger('Size', 'Width', MainForm.Width);
+  IniFile.WriteInteger('Size', 'Height', MainForm.Height);
+end;
+
 procedure TMainForm.MainFormMenuDefaultSettingsClick(Sender: TObject);
 begin
+  IniFile.WriteInteger('Position', 'X', 25);
+  IniFile.WriteInteger('Position', 'Y', 25);
+  IniFile.WriteInteger('Size', 'Width', 350);
+  IniFile.WriteInteger('Size', 'Height', 570);
 
+  MainForm.Left:= IniFile.ReadInteger('Position', 'X', 25);
+  MainForm.Top:= IniFile.ReadInteger('Position', 'Y', 25);
+  MainForm.Width:= IniFile.ReadInteger('Size', 'Width', 350);
+  MainForm.Height:= IniFile.ReadInteger('Size', 'Height', 570);
 end;
 
 procedure TMainForm.MainFormMenuExitClick(Sender: TObject);
@@ -93,6 +120,26 @@ begin
   else
     PasswordString.Text:= 'Не выбраны типы символов';
 end;
+
+
+initialization
+
+if FileExists(GetUserDir + DirectorySeparator + '.ampasswordgenerator.ini') = False then
+begin
+  IniFile:= TIniFile.Create(GetUserDir + DirectorySeparator + '.ampasswordgenerator.ini');
+  IniFile.WriteInteger('Position', 'X', 25);
+  IniFile.WriteInteger('Position', 'Y', 25);
+  IniFile.WriteInteger('Size', 'Width', 350);
+  IniFile.WriteInteger('Size', 'Height', 570);
+  IniFile.Free;
+end;
+
+IniFile:= TIniFile.Create(GetUserDir + DirectorySeparator + '.ampasswordgenerator.ini');
+
+
+finalization
+
+IniFile.Free;
 
 end.
 
