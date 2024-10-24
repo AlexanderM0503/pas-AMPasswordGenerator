@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, StdCtrls, Spin,
-  PasswordGenerator;
+  PasswordGenerator, FormAbout;
 
 type
 
@@ -33,7 +33,9 @@ type
     GroupPassword: TGroupBox;
     PasswordString: TEdit;
     BtnGenPassword: TButton;
+    procedure MainFormMenuDefaultSettingsClick(Sender: TObject);
     procedure MainFormMenuExitClick(Sender: TObject);
+    procedure MainFormMenuAboutClick(Sender: TObject);
     procedure BtnSetNum4Click(Sender: TObject);
     procedure BtnSetNum8Click(Sender: TObject);
     procedure BtnSetNum12Click(Sender: TObject);
@@ -54,9 +56,19 @@ implementation
 { TMainForm }
 
 
+procedure TMainForm.MainFormMenuDefaultSettingsClick(Sender: TObject);
+begin
+
+end;
+
 procedure TMainForm.MainFormMenuExitClick(Sender: TObject);
 begin
   MainForm.Close;
+end;
+
+procedure TMainForm.MainFormMenuAboutClick(Sender: TObject);
+begin
+  AboutForm.ShowModal;
 end;
 
 procedure TMainForm.BtnSetNum4Click(Sender: TObject);
